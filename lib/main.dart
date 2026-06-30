@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:notes_sqlite/core/injection_container.dart';
 
 import 'presentations/pages/home_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await initDependencies();
+
   runApp(const MyApp());
 }
 
@@ -13,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const MyHomePage(),
+      home: const HomePage(),
     );
   }
 }
