@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_sqlite/core/injection_container.dart';
+import 'package:notes_sqlite/presentations/cubits/note_cubit.dart';
 
 import 'presentations/pages/home_page.dart';
 
@@ -16,9 +18,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+    return BlocProvider<NoteCubit>(
+      create: (context) => getIt<NoteCubit>()..getNotes(),
+      child: MaterialApp(
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          appBarTheme: AppBarTheme(
+            surfaceTintColor: Colors.white,
+            backgroundColor: Colors.white,
+          ),
+        ),
+        debugShowCheckedModeBanner: false,
+        home: const HomePage(),
+      ),
     );
   }
 }
