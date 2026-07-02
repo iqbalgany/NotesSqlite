@@ -109,7 +109,7 @@ class _ViewNotePageState extends State<ViewNotePage> {
                   ),
                   child: Text(
                     currentNote.content,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                   ),
                 ),
               ),
