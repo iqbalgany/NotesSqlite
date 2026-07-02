@@ -34,6 +34,8 @@ class NoteCubit extends Cubit<NoteState> {
     emit(NoteLoading());
     try {
       await insertNoteUsecase(note);
+
+      emit(NoteSuccess(notes: await getNotesUsecase()));
     } catch (e) {
       emit(NoteError(errorMessage: e.toString()));
     }
@@ -44,7 +46,7 @@ class NoteCubit extends Cubit<NoteState> {
     try {
       await updateNoteUsecase(note);
 
-      await getNotes();
+      emit(NoteSuccess(notes: await getNotesUsecase()));
     } catch (e) {
       emit(NoteError(errorMessage: e.toString()));
     }
@@ -55,7 +57,7 @@ class NoteCubit extends Cubit<NoteState> {
     try {
       await deleteNoteUsecase(id);
 
-      await getNotes();
+      emit(NoteSuccess(notes: await getNotesUsecase()));
     } catch (e) {
       emit(NoteError(errorMessage: e.toString()));
     }
